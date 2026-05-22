@@ -27,17 +27,17 @@ public class NicknameCommand {
                                     if(nick.isEmpty()){
                                         component.setNickname("");
                                         component.setHasNickname(false);
-                                        player.sendSystemMessage(Component.literal("Removed your nickname").withStyle(ChatFormatting.GRAY));
+                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.clear").withStyle(ChatFormatting.GRAY));
                                     } else {
                                         int length = nick.length();
                                         if(length > Config.maxNick){
-                                            player.sendSystemMessage(Component.literal("Nickname exceeds character limit").withStyle(ChatFormatting.RED));
+                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.maxNick").withStyle(ChatFormatting.RED));
                                         } else if(nick.equals(" ")) {
-                                            player.sendSystemMessage(Component.literal("Nickname cannot be empty").withStyle(ChatFormatting.RED));
+                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.nickEmpty").withStyle(ChatFormatting.RED));
                                         } else {
                                             component.setNickname(nick);
                                             component.setHasNickname(true);
-                                            player.sendSystemMessage(Component.literal("Set nickname to: " + nick).withStyle(ChatFormatting.GRAY));
+                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
                                         }
                                     }
                                     return Command.SINGLE_SUCCESS;
@@ -49,7 +49,7 @@ public class NicknameCommand {
                             PlayerNickComponent component = PlayerNickComponent.get(player);
                             component.setHasNickname(false);
                             component.setNickname("");
-                            player.sendSystemMessage(Component.literal("Removed your nickname").withStyle(ChatFormatting.GRAY));
+                            player.sendSystemMessage(Component.translatable("nickname.command.nick.clear").withStyle(ChatFormatting.GRAY));
                             return Command.SINGLE_SUCCESS;
                         }))
                 .then(Commands.literal("color").requires((serverCommandSource -> {
@@ -61,7 +61,7 @@ public class NicknameCommand {
                                     Player player = source.getPlayer();
                                     PlayerNickComponent component = PlayerNickComponent.get(player);
                                     if(!Config.showColor){
-                                        player.sendSystemMessage(Component.literal("Changing your color has been disabled")
+                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.noColor")
                                                 .withStyle(ChatFormatting.GRAY));
                                         return Command.SINGLE_SUCCESS;
                                     }
@@ -71,7 +71,7 @@ public class NicknameCommand {
                                         component.setHasColor(true);
                                         int fin = RealNickname.convertToHex(color);
 
-                                        player.sendSystemMessage(Component.literal("Changed name color to: ")
+                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.setColor")
                                                 .withStyle(ChatFormatting.GRAY)
                                                 .append(Component.literal("0x" + color.toUpperCase())
                                                         .setStyle(Style.EMPTY.withColor(fin)))
@@ -80,7 +80,7 @@ public class NicknameCommand {
                                     } else {
                                         component.setColor("");
                                         component.setHasColor(false);
-                                        player.sendSystemMessage(Component.literal("Should be a valid hex code, removed your color.")
+                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.invaidHex")
                                                 .withStyle(ChatFormatting.GRAY));
                                     }
                                     return Command.SINGLE_SUCCESS;

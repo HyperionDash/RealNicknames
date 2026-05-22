@@ -4,5 +4,12 @@
   "nickname.midnightconfig.showColor": "Allow Name Colors",
   "nickname.midnightconfig.showColor.tooltip": "Allows for your name to have a hex color code.",
   "nickname.midnightconfig.maxNick": "Max Nickname Length",
-  "nickname.midnightconfig.maxNick.tooltip": "Sets the max length allowed for a nickname"
+  "nickname.midnightconfig.maxNick.tooltip": "Sets the max length allowed for a nickname",
+  "nickname.command.nick.clear": "Removed your nickname",
+  "nickname.command.nick.maxNick": "Nickname exceeds character limit",
+  "nickname.command.nick.nickEmpty": "Nickname cannot be empty",
+  "nickname.command.nick.setNick": "Set nickname to: ",
+  "nickname.command.nick.setColor": "Changed name color to: ",
+  "nickname.command.nick.noColor": "Changing your color has been disabled",
+  "nickname.command.nick.invaidHex": "Should be a valid hex code, removed your color."
 }
