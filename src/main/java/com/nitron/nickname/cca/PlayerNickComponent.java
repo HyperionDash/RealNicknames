@@ -1,25 +1,25 @@
 package com.nitron.nickname.cca;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.NotNull;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class PlayerNickComponent implements AutoSyncedComponent, CommonTickingComponent {
-    private final PlayerEntity player;
+    private final Player player;
 
     private boolean hasNickname = false;
     private String nickname = "";
     private boolean hasColor = false;
     private String color = "";
 
-    public PlayerNickComponent(PlayerEntity player) {
+    public PlayerNickComponent(Player player) {
         this.player = player;
     }
     private void sync(){NicknameComponents.NICKNAME.sync(this.player);}
-    public static PlayerNickComponent get(@NotNull PlayerEntity player) {return (PlayerNickComponent) NicknameComponents.NICKNAME.get(player);}
+    public static PlayerNickComponent get(@NotNull Player player) {return (PlayerNickComponent) NicknameComponents.NICKNAME.get(player);}
 
 
     @Override
@@ -28,19 +28,19 @@ public class PlayerNickComponent implements AutoSyncedComponent, CommonTickingCo
     }
 
     @Override
-    public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.hasNickname = nbtCompound.getBoolean("hasNickname");
-        this.hasColor = nbtCompound.getBoolean("hasColor");
-        this.nickname = nbtCompound.getString("nickname");
-        this.color = nbtCompound.getString("color");
+    public void readData(ValueInput readView) {
+        this.hasNickname = readView.getBooleanOr("hasNickname", false);
+        this.hasColor = readView.getBooleanOr("hasColor", false);
+        this.nickname = readView.getString("nickname").orElse("");
+        this.color = readView.getString("color").orElse("");
     }
 
     @Override
-    public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbtCompound.putBoolean("hasNickname", this.hasNickname);
-        nbtCompound.putBoolean("hasColor", this.hasColor);
-        nbtCompound.putString("nickname", this.nickname);
-        nbtCompound.putString("color", this.color);
+    public void writeData(ValueOutput writeView) {
+        writeView.putBoolean("hasNickname", this.hasNickname);
+        writeView.putBoolean("hasColor", this.hasColor);
+        writeView.putString("nickname", this.nickname);
+        writeView.putString("color", this.color);
     }
 
     public boolean isHasNickname() {

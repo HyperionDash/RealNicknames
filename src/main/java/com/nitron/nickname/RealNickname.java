@@ -6,20 +6,11 @@ import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
-import net.minecraft.world.GameRules;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.regex.Pattern;
 
 public class RealNickname implements ModInitializer {
 	public static final String MOD_ID = "nickname";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-	/*public static final GameRules.Key<GameRules.BooleanRule> ALLOW_NAME_COLOR =
-			GameRuleRegistry.register("allowNameColor", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false));*/
 
 	@Override
 	public void onInitialize() {

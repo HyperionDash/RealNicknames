@@ -1,7 +1,6 @@
 package com.nitron.nickname.config;
 
 import com.nitron.nickname.RealNickname;
-import com.terraformersmc.modmenu.ModMenu;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import eu.midnightdust.lib.config.MidnightConfig;
