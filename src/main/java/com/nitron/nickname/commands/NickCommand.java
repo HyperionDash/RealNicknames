@@ -28,17 +28,17 @@ public class NickCommand {
                                     if(nick.isEmpty()){
                                         component.setNickname("");
                                         component.setHasNickname(false);
-                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.clear").withStyle(ChatFormatting.GRAY));
+                                        player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
                                     } else {
                                         int length = nick.length();
                                         if(length > Config.maxNick){
-                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.maxNick").withStyle(ChatFormatting.RED));
+                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.maxNick").withStyle(ChatFormatting.RED));
                                         } else if(nick.equals(" ")) {
-                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.nickEmpty").withStyle(ChatFormatting.RED));
+                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.nickEmpty").withStyle(ChatFormatting.RED));
                                         } else {
                                             component.setNickname(nick);
                                             component.setHasNickname(true);
-                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
+                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
                                         }
                                     }
                                     return Command.SINGLE_SUCCESS;
@@ -50,7 +50,7 @@ public class NickCommand {
                             PlayerNickComponent component = PlayerNickComponent.get(player);
                             component.setHasNickname(false);
                             component.setNickname("");
-                            player.sendSystemMessage(Component.translatable("nickname.command.nick.clear").withStyle(ChatFormatting.GRAY));
+                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
                             return Command.SINGLE_SUCCESS;
                         }))
                 .then(Commands.literal("color").requires((serverCommandSource -> {
@@ -62,7 +62,7 @@ public class NickCommand {
                                     Player player = source.getPlayer();
                                     PlayerNickComponent component = PlayerNickComponent.get(player);
                                     if(!Config.showColor){
-                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.noColor")
+                                        player.sendSystemMessage(Component.translatable("commands.nickname.nick.noColor")
                                                 .withStyle(ChatFormatting.GRAY));
                                         return Command.SINGLE_SUCCESS;
                                     }
@@ -72,7 +72,7 @@ public class NickCommand {
                                         component.setHasColor(true);
                                         int fin = RealNickname.convertToHex(color);
 
-                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.setColor")
+                                        player.sendSystemMessage(Component.translatable("commands.nickname.nick.setColor")
                                                 .withStyle(ChatFormatting.GRAY)
                                                 .append(Component.literal("0x" + color.toUpperCase())
                                                         .setStyle(Style.EMPTY.withColor(fin)))
@@ -81,7 +81,7 @@ public class NickCommand {
                                     } else {
                                         component.setColor("");
                                         component.setHasColor(false);
-                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.invaidHex")
+                                        player.sendSystemMessage(Component.translatable("commands.nickname.nick.invaidHex")
                                                 .withStyle(ChatFormatting.GRAY));
                                     }
                                     return Command.SINGLE_SUCCESS;
@@ -97,17 +97,17 @@ public class NickCommand {
                                                     if(nick.isEmpty()){
                                                         component.setNickname("");
                                                         component.setHasNickname(false);
-                                                        player.sendSystemMessage(Component.translatable("nickname.command.nick.clear").withStyle(ChatFormatting.GRAY));
+                                                        player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
                                                     } else {
                                                         int length = nick.length();
                                                         if(length > Config.maxNick){
-                                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.maxNick").withStyle(ChatFormatting.RED));
+                                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.maxNick").withStyle(ChatFormatting.RED));
                                                         } else if(nick.equals(" ")) {
-                                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.nickEmpty").withStyle(ChatFormatting.RED));
+                                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.nickEmpty").withStyle(ChatFormatting.RED));
                                                         } else {
                                                             component.setNickname(nick);
                                                             component.setHasNickname(true);
-                                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
+                                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
                                                         }
                                                     }
                                                     return Command.SINGLE_SUCCESS;
@@ -118,7 +118,7 @@ public class NickCommand {
                                             PlayerNickComponent component = PlayerNickComponent.get(player);
                                             component.setHasNickname(false);
                                             component.setNickname("");
-                                            player.sendSystemMessage(Component.translatable("nickname.command.nick.clear").withStyle(ChatFormatting.GRAY));
+                                            player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
                                             return Command.SINGLE_SUCCESS;
                                         }))
                                 .then(Commands.literal("color").requires((serverCommandSource -> {
@@ -129,7 +129,7 @@ public class NickCommand {
                                             Player player = EntityArgument.getPlayer(commandContext, "target");
                                             PlayerNickComponent component = PlayerNickComponent.get(player);
                                             if(!Config.showColor){
-                                                player.sendSystemMessage(Component.translatable("nickname.command.nick.noColor")
+                                                player.sendSystemMessage(Component.translatable("commands.nickname.nick.noColor")
                                                         .withStyle(ChatFormatting.GRAY));
                                                 return Command.SINGLE_SUCCESS;
                                             }
@@ -139,7 +139,7 @@ public class NickCommand {
                                                 component.setHasColor(true);
                                                 int fin = RealNickname.convertToHex(color);
 
-                                                player.sendSystemMessage(Component.translatable("nickname.command.nick.setColor")
+                                                player.sendSystemMessage(Component.translatable("commands.nickname.nick.setColor")
                                                         .withStyle(ChatFormatting.GRAY)
                                                         .append(Component.literal("0x" + color.toUpperCase())
                                                                 .setStyle(Style.EMPTY.withColor(fin)))
@@ -148,7 +148,7 @@ public class NickCommand {
                                             } else {
                                                 component.setColor("");
                                                 component.setHasColor(false);
-                                                player.sendSystemMessage(Component.translatable("nickname.command.nick.invaidHex")
+                                                player.sendSystemMessage(Component.translatable("commands.nickname.nick.invaidHex")
                                                         .withStyle(ChatFormatting.GRAY));
                                             }
                                             return Command.SINGLE_SUCCESS;
