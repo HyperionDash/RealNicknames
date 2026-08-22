@@ -3,7 +3,7 @@ package com.nitron.nickname.mixin;
 import com.mojang.authlib.GameProfile;
 import com.nitron.nickname.RealNickname;
 import com.nitron.nickname.cca.PlayerNickComponent;
-import com.nitron.nickname.config.Config;
+import com.nitron.nickname.config.NicknameConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -43,7 +43,7 @@ public abstract class ServerPlayerEntityMixin extends Player {
         ServerPlayer player = (ServerPlayer) (Object) this;
         PlayerNickComponent component = PlayerNickComponent.get(player);
         if(component.isHasNickname()){
-            if (component.isHasColor() && Config.showColor) {
+            if (component.isHasColor() && NicknameConfig.showColor) {
                 cir.setReturnValue(Component.literal(component.getNickname()).setStyle(Style.EMPTY.withColor(RealNickname.convertToHex(component.getColor()))));
             } else {
                 cir.setReturnValue(Component.literal(component.getNickname()));

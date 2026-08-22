@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.nitron.nickname.RealNickname;
 import com.nitron.nickname.cca.PlayerNickComponent;
-import com.nitron.nickname.config.Config;
+import com.nitron.nickname.config.NicknameConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -31,7 +31,7 @@ public class NickCommand {
                                         player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
                                     } else {
                                         int length = nick.length();
-                                        if(length > Config.maxNick){
+                                        if(length > NicknameConfig.maxNick){
                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.maxNick").withStyle(ChatFormatting.RED));
                                         } else if(nick.equals(" ")) {
                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.nickEmpty").withStyle(ChatFormatting.RED));
@@ -54,14 +54,14 @@ public class NickCommand {
                             return Command.SINGLE_SUCCESS;
                         }))
                 .then(Commands.literal("color").requires((serverCommandSource -> {
-                            return Config.showColor;
+                            return NicknameConfig.showColor;
                         })).then(Commands.argument("color", StringArgumentType.string())
                                 .executes(commandContext -> {
                                     String color = StringArgumentType.getString(commandContext, "color");
                                     CommandSourceStack source = commandContext.getSource();
                                     Player player = source.getPlayer();
                                     PlayerNickComponent component = PlayerNickComponent.get(player);
-                                    if(!Config.showColor){
+                                    if(!NicknameConfig.showColor){
                                         player.sendSystemMessage(Component.translatable("commands.nickname.nick.noColor")
                                                 .withStyle(ChatFormatting.GRAY));
                                         return Command.SINGLE_SUCCESS;
@@ -100,7 +100,7 @@ public class NickCommand {
                                                         player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
                                                     } else {
                                                         int length = nick.length();
-                                                        if(length > Config.maxNick){
+                                                        if(length > NicknameConfig.maxNick){
                                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.maxNick").withStyle(ChatFormatting.RED));
                                                         } else if(nick.equals(" ")) {
                                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.nickEmpty").withStyle(ChatFormatting.RED));
@@ -122,13 +122,13 @@ public class NickCommand {
                                             return Command.SINGLE_SUCCESS;
                                         }))
                                 .then(Commands.literal("color").requires((serverCommandSource -> {
-                                    return Config.showColor;
+                                    return NicknameConfig.showColor;
                                 })).then(Commands.argument("color", StringArgumentType.string())
                                         .executes(commandContext -> {
                                             String color = StringArgumentType.getString(commandContext, "color");
                                             Player player = EntityArgument.getPlayer(commandContext, "target");
                                             PlayerNickComponent component = PlayerNickComponent.get(player);
-                                            if(!Config.showColor){
+                                            if(!NicknameConfig.showColor){
                                                 player.sendSystemMessage(Component.translatable("commands.nickname.nick.noColor")
                                                         .withStyle(ChatFormatting.GRAY));
                                                 return Command.SINGLE_SUCCESS;
