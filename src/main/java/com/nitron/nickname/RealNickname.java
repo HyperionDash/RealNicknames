@@ -1,6 +1,6 @@
 package com.nitron.nickname;
 
-import com.nitron.nickname.commands.NicknameCommand;
+import com.nitron.nickname.commands.NickCommand;
 import com.nitron.nickname.config.Config;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
@@ -14,8 +14,8 @@ public class RealNickname implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, registrationEnvironment) -> {
-			NicknameCommand.register(dispatcher);
+		CommandRegistrationCallback.EVENT.register((dispatcher, buildContext, selection) -> {
+			NickCommand.register(dispatcher);
 		});
 		MidnightConfig.init(MOD_ID, Config.class);
 	}

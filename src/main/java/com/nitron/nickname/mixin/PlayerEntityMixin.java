@@ -22,13 +22,13 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @ModifyReturnValue(method = "getDisplayName", at = @At("RETURN"))
     private Component changeNickname(Component original){
         Player self = ((Player) (Object) this);
-        PlayerNickComponent component = PlayerNickComponent.get(self);
+        PlayerNickComponent nickname = PlayerNickComponent.get(self);
 
-        if(component.isHasNickname()){
-            if (component.isHasColor() && Config.showColor) {
-                return Component.literal(component.getNickname()).setStyle(Style.EMPTY.withColor(RealNickname.convertToHex(component.getColor())));
+        if(nickname.isHasNickname()){
+            if (nickname.isHasColor() && Config.showColor) {
+                return Component.literal(nickname.getNickname()).setStyle(Style.EMPTY.withColor(RealNickname.convertToHex(nickname.getColor())));
             } else {
-                return Component.literal(component.getNickname());
+                return Component.literal(nickname.getNickname());
             }
         }
         return original;
