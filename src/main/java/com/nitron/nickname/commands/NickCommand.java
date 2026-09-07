@@ -29,6 +29,7 @@ public class NickCommand {
                                         component.setNickname("");
                                         component.setHasNickname(false);
                                         player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
+                                        RealNickname.LOGGER.info(player+" cleared their Nickname");
                                     } else {
                                         int length = nick.length();
                                         if(length > NicknameConfig.maxNick){
@@ -39,6 +40,7 @@ public class NickCommand {
                                             component.setNickname(nick);
                                             component.setHasNickname(true);
                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
+                                            RealNickname.LOGGER.info(player+" set their Nickname to "+nick);
                                         }
                                     }
                                     return Command.SINGLE_SUCCESS;
@@ -51,6 +53,7 @@ public class NickCommand {
                             component.setHasNickname(false);
                             component.setNickname("");
                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
+                            RealNickname.LOGGER.info(player+" cleared their Nickname");
                             return Command.SINGLE_SUCCESS;
                         }))
                 .then(Commands.literal("color").requires((serverCommandSource -> {
@@ -92,12 +95,15 @@ public class NickCommand {
                                         .then(Commands.argument("nick", StringArgumentType.string())
                                                 .executes(commandContext -> {
                                                     Player player = EntityArgument.getPlayer(commandContext, "target");
+                                                    CommandSourceStack source = (CommandSourceStack) commandContext.getSource();
+                                                    Player user = source.getPlayer();
                                                     PlayerNickComponent component = PlayerNickComponent.get(player);
                                                     String nick = StringArgumentType.getString(commandContext, "nick");
                                                     if(nick.isEmpty()){
                                                         component.setNickname("");
                                                         component.setHasNickname(false);
                                                         player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
+                                                        RealNickname.LOGGER.info(user+" cleared "+player+"'s Nickname");
                                                     } else {
                                                         int length = nick.length();
                                                         if(length > NicknameConfig.maxNick){
@@ -108,6 +114,7 @@ public class NickCommand {
                                                             component.setNickname(nick);
                                                             component.setHasNickname(true);
                                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.setNick").withStyle(ChatFormatting.GRAY).append(nick));
+                                                            RealNickname.LOGGER.info(user+" set "+player+"'s Nickname to "+nick);
                                                         }
                                                     }
                                                     return Command.SINGLE_SUCCESS;
@@ -115,10 +122,13 @@ public class NickCommand {
                                 .then(Commands.literal("clear")
                                         .executes(commandContext -> {
                                             Player player = EntityArgument.getPlayer(commandContext, "target");
+                                            CommandSourceStack source = (CommandSourceStack) commandContext.getSource();
+                                            Player user = source.getPlayer();
                                             PlayerNickComponent component = PlayerNickComponent.get(player);
                                             component.setHasNickname(false);
                                             component.setNickname("");
                                             player.sendSystemMessage(Component.translatable("commands.nickname.nick.clear").withStyle(ChatFormatting.GRAY));
+                                            RealNickname.LOGGER.info(user+" cleared "+player+"'s Nickname");
                                             return Command.SINGLE_SUCCESS;
                                         }))
                                 .then(Commands.literal("color").requires((serverCommandSource -> {

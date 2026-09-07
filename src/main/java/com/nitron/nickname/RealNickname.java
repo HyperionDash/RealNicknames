@@ -8,11 +8,14 @@ import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.regex.Pattern;
 
 public class RealNickname implements ModInitializer, ModMenuApi {
 	public static final String MOD_ID = "nickname";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	private static final Pattern HEX_PATTERN = Pattern.compile("^#?[a-fA-F0-9]{6}$");
 
