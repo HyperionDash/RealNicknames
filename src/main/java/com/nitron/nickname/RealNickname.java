@@ -2,8 +2,6 @@ package com.nitron.nickname;
 
 import com.nitron.nickname.commands.NickCommand;
 import com.nitron.nickname.config.NicknameConfig;
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
@@ -13,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.regex.Pattern;
 
-public class RealNickname implements ModInitializer, ModMenuApi {
+public class RealNickname implements ModInitializer {
 	public static final String MOD_ID = "nickname";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -34,10 +32,5 @@ public class RealNickname implements ModInitializer, ModMenuApi {
 			NickCommand.register(dispatcher);
 		});
 		MidnightConfig.init(MOD_ID, NicknameConfig.class);
-	}
-
-	@Override
-	public ConfigScreenFactory<?> getModConfigScreenFactory() {
-		return parent -> MidnightConfig.getScreen(parent, MOD_ID);
 	}
 }

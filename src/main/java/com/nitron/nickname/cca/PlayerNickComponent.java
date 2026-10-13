@@ -21,11 +21,8 @@ public class PlayerNickComponent implements AutoSyncedComponent, CommonTickingCo
     private void sync(){NicknameComponents.NICKNAME.sync(this.player);}
     public static PlayerNickComponent get(@NotNull Player player) {return (PlayerNickComponent) NicknameComponents.NICKNAME.get(player);}
 
-
     @Override
-    public void tick() {
-
-    }
+    public void tick() {}
 
     @Override
     public void readData(ValueInput readView) {

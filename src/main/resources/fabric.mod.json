@@ -18,7 +18,7 @@
 			"com.nitron.nickname.cca.NicknameComponents"
 		],
 		"modmenu": [
-			"com.nitron.nickname.RealNickname"
+			"com.nitron.nickname.RealNicknameModmenu"
 		]
 	},
 	"mixins": [
